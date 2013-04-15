@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head> 
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>My Slides</title> 
+    <link rel="stylesheet" type="text/css" media="screen, projection, print" 
+     href="slidy.css" />
+    <link rel="stylesheet" type="text/css" media="screen, projection, print" 
+     href="style.css" />
+    <script src="showdown.js"></script>
+    <script src="slidy.js"></script>
+    
+</head>
+<body>
+<script type=text/markdown>
+<!--
+Jeu de mémoire auditive et visuel !
+=======================
+__*Le principe général*__
+
+- 4/6/8 boutons (trois difficultés différentes) de couleurs differentes.
+- Le but est de tenir le plus longtemps en suivant le rythme des sons produit en appuyant sur les boutons.
+Le jeu répète la même couleur et le même son, puis ajoute au hasard une nouvelle couleur. Le joueur doit reproduire cette nouvelle séquence.
+ Chaque fois que le joueur reproduit correctement la séquence, le jeu ajoute une nouvelle couleur.
+
+Exemple : Le rouge clignotte un fois et émet un son . Pause. L'utilisateur doit cliquer sur le bouton ayant émit le son.
+Si c'est bonne réponse, le rouge puis le bleu clignottent et émettent un son,
+ l'utilisateur doit alors cliquer sur ces boutons dans l'ordre dans lequel ils se sont activés.
+
+Le jeu se jouera sur navigateur !
+
+-----------------------------------------------------
+
+__Jouabilité__
+
+Pour jouer à ce jeu on préférera utiliser le clavier pour ne pas à avoir à balader la souris de bouton en bouton. 
+
+Donc, on prendra par exemple, pour le mode facile (4 boutons), les 4 boutons serraient z/q/s/d 
+OU serrait les 4 touches droite/gauche/haut/bas du pad numérique.
+
+-----------------------------------------------------
+
+__Graphiquement__ 
+
+Le jeu comportera un menu : Jouer / Instructions
+
+__*Jouer*__ : Une fenetre s'ouvre et demande à quel niveau de diffculté veut-on jouer. Une fois, choisit son niveau de difficulté, l'écran de jeu se lance.
+
+__*Instructions*__ : Suivre le rythme ! + Les touches
+
+Un grand cercle qui est le plateau de jeu, 4 ( 6 ou 8) formes (cerlce, carré ...) qui sont les boutons .
+
+
+-----------------------------------------------------
+
+    
+-->
+</script>
+<script>
+var scripts = document.getElementsByTagName('script');
+for (var i = 0; i < scripts.length; i++){
+    var script = scripts[i];
+    if (script.type != 'text/markdown') continue;
+    var md = script.innerHTML.replace(/^\s<!--*/, '')
+        .replace(/-->\s*$/, '');
+    var markup = new Showdown.converter().makeHtml(md);
+    var slides = markup.split('<hr />');
+    for (var j = 0; j < slides.length; j++)
+        document.write('<div class=slide>' + slides[j] + '</div>');
+}
+w3c_slidy.add_listener(document.body, "touchend", w3c_slidy.mouse_button_click);
+</script>
+</body>
+</html>
