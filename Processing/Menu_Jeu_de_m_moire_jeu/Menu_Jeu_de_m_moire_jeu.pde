@@ -4,13 +4,23 @@ float ini;
 float y;
 float decalage;
 String mode;
-
+float h;   //hauteur fenetre
+float l;  //latrgeur fenetre
+float dy; //decalage y
+float x;
+float z;
 
 void setup() {
   
   mode = "menu";
   img = loadImage("menu_note.jpg");
   size(425,425);
+  
+l=212;
+h=425;
+dy=80;
+x=220;
+z=130;
 }
 
 void draw() {
@@ -61,52 +71,68 @@ void draw() {
   //                //  mode  \\
  //                 \\  jeu   //  
 //                   \\      //
+if (mode == "menu"){
  if (mousePressed && 30<mouseX && mouseX<240 && 3<mouseY&& mouseY <73){
     mode = "jeu";
   }
-  
+}
     if (mode == "jeu"){
-    size(425, 425);
+    //size(425,425);
  background(0);
  fill (255);
- ellipse(width,height, width,width);
+ ellipse(l,l,h,h);
 rectMode(CENTER);
 
+
+ 
+fill(0);
+  beginShape();
+  vertex(0+l, -50+l);
+  vertex(14+l, -20+l);
+  vertex(47+l, -15+l);
+  vertex(23+l, 7+l);
+  vertex(29+l, 40+l);
+  vertex(0+l, 25+l);
+  vertex(-29+l, 40+l);
+  vertex(-23+l, 7+l);
+  vertex(-47+l, -15+l);
+  vertex(-14+l, -20+l);
+  endShape(CLOSE);
        //easy
     //rouge
 fill(255,0,0);
 noStroke();
-ellipse(250,90,250,150);
+ellipse(l,dy,x,z);
     //jaune
 fill(250,255,0);
 noStroke();
-ellipse(250,500-90,250,150);
+ellipse(l,h-dy,x,z);
     //bleu
 fill(0,0,255);
 noStroke();
-ellipse(500-90,250,150,250);
+ellipse(h-dy,l,z,x);
     //vert
 fill(0,255,0);
 noStroke();
-ellipse(90,250,150,250);
+ellipse(dy,l,z,x);
     }
-
 
    //                //      \\
   //                //  mode  \\
  //                 \\ instru //  
 //                   \\      //
-
+if (mode == "menu"){
 if (mousePressed && 30<mouseX && mouseX<240 && 81<mouseY&& mouseY <120){
     mode = "instru";
 }
+}
 p = 80;
 if (mode == "instru"){
-    //size(425, 425);
  background(255);
  fill(0);
+ 
  PFont Police = loadFont("BerlinSansFB-Bold-35.vlw");
-  textFont(Police, p);
+ textFont(Police, p);
  text(" Suivez le", 10,p);
  text("  rythme!", 10,2*p);
  text("Bonne",100,4*p);
